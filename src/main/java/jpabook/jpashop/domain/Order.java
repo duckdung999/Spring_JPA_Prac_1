@@ -24,10 +24,10 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // orderItems에 RDBMS관점에서 봤을 대 참조를 걸고 있는 건 order밖에없음.
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // orderItems와 마찬가지로 참조를 걸고 있는건 order밖에없음.
     private Delivery delivery;
 
     private LocalDateTime orderDate;

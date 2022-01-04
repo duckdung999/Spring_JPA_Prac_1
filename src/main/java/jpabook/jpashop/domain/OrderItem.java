@@ -15,6 +15,8 @@ import static javax.persistence.FetchType.LAZY;
 @Setter
 public class OrderItem {
 
+
+    //이 부분은 객체 멤버변수 선언 공간이자, DB 설계라고 보면 된다. 테이블을 만들 필요가 없음.
     @GeneratedValue
     @Id // 기본키임을 알림
     @Column(name = "order_item_id")
@@ -31,6 +33,9 @@ public class OrderItem {
     private int OrderPrice;
     private int count;
 
+
+    // 정적 팩토리 메소드 인스턴스가 생성되지 않아도 사용가능하다.
+    // 생성자로 해도되는데 정적 팩토리 메소드나 빌더를 사용하는 이유는 따로 있음.
     public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(item);
